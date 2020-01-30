@@ -11,7 +11,7 @@
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-191A1E">
 
-  <a href="https://cristianefaria.com">
+  <a href="https://github.com/ruancaetano/">
     <img alt="Made by Ruan Caetano" src="https://img.shields.io/badge/Made%20by-Ruan%20Caetano-191A1E">
   </a>
 
