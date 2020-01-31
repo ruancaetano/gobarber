@@ -35,6 +35,7 @@ O Objetivo é possibilitar o agendamento de um serviço entre o prestador e o cl
 - Nodemailer para envio de e-mails
 - Autenticação JWT
 - Yup para validações
+- Docker
 
 ## Web e Mobile
 
