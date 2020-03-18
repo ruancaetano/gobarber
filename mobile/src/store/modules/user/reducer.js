@@ -27,6 +27,5 @@ export default function userReducer(state = INITIAL_STATE, action) {
       default:
         return state;
     }
-    return state;
   });
 }

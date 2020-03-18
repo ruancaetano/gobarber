@@ -6,7 +6,7 @@ import persistReducers from './persistReducers';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-const sagaMonitor = __DEV__ ? console.tron.createSagaMonitor() : null;
+const sagaMonitor = console.tron ? console.tron.createSagaMonitor() : null;
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 const middlewares = [sagaMiddleware];

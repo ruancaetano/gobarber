@@ -38,7 +38,7 @@ export function* signIn({ payload: { email, password } }) {
   } catch (error) {
     Alert.alert(
       'Falha na autenticação',
-      'F  alha na autenticação, verifique seus dados!'
+      'Falha na autenticação, verifique seus dados!'
     );
     yield put(signFailure());
   }

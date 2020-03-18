@@ -41,7 +41,7 @@ export function* signIn({ payload: { email, password } }) {
 
 export function* signUp({ payload: { name, email, password } }) {
   try {
-    yield call(api.post, '/users', { name, email, password });
+    yield call(api.post, '/users', { name, email, password, provider: true });
     history.push('/');
   } catch (error) {
     toast.error('Falha no cadastro, verifique seus dados!');
