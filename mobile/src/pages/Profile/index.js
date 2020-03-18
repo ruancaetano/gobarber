@@ -1,13 +1,122 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { updateProfileRequest } from '~/store/modules/user/actions';
 import Background from '~/components/Background';
 
-// import { Container } from './styles';
+import {
+  Container,
+  Title,
+  Form,
+  FormInput,
+  Separator,
+  SubmitButton,
+} from './styles';
 
 export default function Profile() {
-  return <Background />;
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  const [name, setName] = useState(profile.name);
+  const [email, setEmail] = useState(profile.email);
+  const [password, setPassword] = useState('');
+  const [oldPassord, setolOPassord] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const oldPassordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  function handleSubmit() {
+    dispatch(
+      updateProfileRequest({
+        name,
+        email,
+        oldPassord,
+        password,
+        confirmPassword,
+      })
+    );
+  }
+
+  useEffect(() => {
+    setPassword('');
+    setolOPassord('');
+    setConfirmPassword('');
+  }, [profile]);
+
+  return (
+    <Background>
+      <Container>
+        <Title>Meu Perfil</Title>
+
+        <Form>
+          <FormInput
+            icon="person-outline"
+            autoCorret={false}
+            autoCapitalize="none"
+            placeholder="Digite seu nome completo"
+            returnKeyType="next"
+            onSubmitEditing={() => emailRef.current.focus()}
+            value={name}
+            onChangeText={setName}
+          />
+
+          <FormInput
+            ref={emailRef}
+            icon="mail-outline"
+            keyboardType="email-address"
+            autoCorret={false}
+            autoCapitalize="none"
+            placeholder="Digite seu e-mail"
+            returnKeyType="next"
+            onSubmitEditing={() => oldPassordRef.current.focus()}
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <Separator />
+
+          <FormInput
+            ref={oldPassordRef}
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Digite sua senha secreta"
+            returnKeyType="next"
+            onSubmitEditing={() => passwordRef.current.focus()}
+            value={oldPassord}
+            onChangeText={setolOPassord}
+          />
+
+          <FormInput
+            ref={passwordRef}
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Digite uma nova senha secreta"
+            returnKeyType="next"
+            onSubmitEditing={() => confirmPasswordRef.current.focus()}
+            value={password}
+            onChangeText={setPassword}
+          />
+
+          <FormInput
+            ref={confirmPasswordRef}
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Confirme sua nova senha secreta"
+            returnKeyType="send"
+            onSubmitEditing={handleSubmit}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+
+          <SubmitButton onPress={handleSubmit}>Atualizar perfil</SubmitButton>
+        </Form>
+      </Container>
+    </Background>
+  );
 }
 
 Profile.navigationOptions = {

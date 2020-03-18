@@ -134,7 +134,7 @@ class AppointmentsController {
       });
     }
 
-    if (appointment.user_id !== req.userId) {
+    if (appointment.userId !== req.userId) {
       return res.status(401).json({
         error: 'You cannot cancel an appointent of another person!',
       });
